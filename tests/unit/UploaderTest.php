@@ -61,7 +61,7 @@
 		public function tearDown ()
 		{
 			foreach (scandir($this->tmpPath) as $file) {
-				if (in_array($file, ['..', '.'])) {
+				if (in_array($file, ['..', '.', '.gitkeep'])) {
 					continue;
 				}
 
@@ -69,7 +69,7 @@
 			}
 
 			foreach (scandir($this->destPath) as $file) {
-				if (in_array($file, ['..', '.'])) {
+				if (in_array($file, ['..', '.', '.gitkeep'])) {
 					continue;
 				}
 
