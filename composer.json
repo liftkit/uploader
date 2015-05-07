@@ -1,0 +1,23 @@
+{
+	"name": "liftkit/uploader",
+	"description": "LiftKit library for uploading files",
+	"license": "LGP-2.1",
+	"authors": [
+		{
+			"name": "Ryan Williams",
+			"email": "rwilliams@stream9.net",
+			"homepage": "https://www.stream9.net",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"LiftKit\\Uploader\\": "src/",
+			"LiftKit\\Tests\\Unit\\Uploader\\": "tests/unit/",
+			"LiftKit\\Tests\\Stub\\Uploader\\": "tests/stub/"
+		}
+	},
+	"require-dev": {
+		"phpunit/phpunit": "4.5.*"
+	}
+}
