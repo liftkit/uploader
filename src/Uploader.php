@@ -117,7 +117,7 @@
 						$thisFile[$member] = $this->upload[$member][$key];
 					}
 
-					$this->doUpload($thisFile, $path, $keepName);
+					$this->doUpload($thisFile, $path, $keepName, $key);
 				}
 			} else {
 				$this->doUpload($this->upload, $path, $keepName);
@@ -127,7 +127,7 @@
 		}
 
 
-		protected function doUpload ($file, $path, $name)
+		protected function doUpload ($file, $path, $name, $key = null)
 		{
 			if (!isset($file['error'])) {
 				throw new UploadException(
@@ -180,7 +180,7 @@
 
 						if ($this->moveFile($file['tmp_name'], rtrim($path, '/').'/'.$name)) {
 							if ($this->multi) {
-								$this->last[] = $name;
+								$this->last[$key] = $name;
 							} else {
 								$this->last = $name;
 							}
