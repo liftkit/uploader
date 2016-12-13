@@ -3,6 +3,7 @@
 	namespace LiftKit\Uploader;
 
 	use LiftKit\Uploader\Exception\Upload as UploadException;
+	use LiftKit\Uploader\Exception\Upload;
 
 
 	class Uploader
@@ -176,9 +177,13 @@
 							$name = $file['name'];
 						}
 
-						$name = $this->getUniqueFileName($path, $name);
+						if (! $this->overwrite) {
+							$name = $this->getUniqueFileName($path, $name);
+						}
 
-						if ($this->moveFile($file['tmp_name'], rtrim($path, '/').'/'.$name)) {
+						$fullPath = rtrim($path, '/') . '/' . $name;
+
+						if ($this->moveFile($file['tmp_name'], $fullPath)) {
 							if ($this->multi) {
 								$this->last[$key] = $name;
 							} else {
@@ -305,6 +310,14 @@
 
 		protected function moveFile ($src, $dest)
 		{
+			if ($this->overwrite && is_file($dest)) {
+				$status = @unlink($dest);
+
+				if (! $status) {
+					throw new Upload('Could not overwrite ' . $dest);
+				}
+			}
+
 			return move_uploaded_file($src, $dest);
 		}
 	}
