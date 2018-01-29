@@ -1,7 +1,7 @@
 {
 	"name": "liftkit/uploader",
 	"description": "LiftKit library for uploading files",
-	"license": "LGP-2.1",
+	"license": "LGPL-2.1-only",
 	"authors": [
 		{
 			"name": "Ryan Williams",
